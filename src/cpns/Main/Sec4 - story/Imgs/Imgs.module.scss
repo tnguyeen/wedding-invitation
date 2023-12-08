@@ -1,0 +1,33 @@
+.wrapperImgs {
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  margin: 10px;
+  .imgsContainer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    .anh {
+      border-radius: 40px 0 40px 0;
+      height: auto !important;
+      width: 60% !important;
+      // max-width: 60% !important;
+      // max-height: 60% !important;
+      position: absolute;
+    }
+    .namTren {
+      top: 0;
+      left: 0;
+      z-index: 89;
+    }
+    .namDuoi {
+      bottom: 0;
+      right: 0;
+      z-index: 90;
+    }
+  }
+}

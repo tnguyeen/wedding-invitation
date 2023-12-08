@@ -24,7 +24,7 @@ import rings from "./rings.png"
 import cheers from "./cheers.png"
 import hand from "./hand.png"
 import { useEffect, useRef } from "react"
-import { appear, rise } from "@/cpns/scrollTrigger"
+import { rise, appear, addtoAppear, addtoRise } from "@/cpns/scrollTrigger"
 
 export default function Sec2() {
   const riseArr = useRef<Array<HTMLDivElement>>([])
@@ -33,16 +33,6 @@ export default function Sec2() {
     riseArr.current.forEach(rise)
     appearArr.current.forEach(appear)
   }, [])
-  const addtoRise = (el: HTMLDivElement) => {
-    if (el && !riseArr.current.includes(el)) {
-      riseArr.current.push(el)
-    }
-  }
-  const addtoAppear = (el: HTMLDivElement) => {
-    if (el && !appearArr.current.includes(el)) {
-      appearArr.current.push(el)
-    }
-  }
 
   return (
     <div className={styles.wrapper}>
@@ -57,67 +47,115 @@ export default function Sec2() {
         <h1
           className={dancingScript.className}
           style={{ marginBottom: "30px" }}
-          ref={addtoRise}
+          ref={(el) => {
+            el && addtoAppear(el, riseArr)
+          }}
         >
           Our Special Day
         </h1>
-        <div ref={addtoAppear}>
+        <div
+          ref={(el) => {
+            el && addtoAppear(el, riseArr)
+          }}
+        >
           <Image src={hand} alt="hand" className={styles.countdownImg} />
         </div>
         <Countdown />
         <h3
           className={dancingScript.className}
           style={{ marginTop: "30px" }}
-          ref={addtoRise}
+          ref={(el) => {
+            el && addtoAppear(el, riseArr)
+          }}
         >
           Together with our parents, request the honor of your presence as we
           celebrate the love we found on :
         </h3>
       </div>
       <div className={styles.timeAndPlace}>
-        <h1 className={balooBhaijaan2.className} ref={addtoRise}>
+        <h1
+          className={balooBhaijaan2.className}
+          ref={(el) => {
+            el && addtoAppear(el, riseArr)
+          }}
+        >
           THE WEDDING DAY
         </h1>
         <div className={styles.date}>
-          <div className={styles.main} ref={addtoRise}>
+          <div
+            className={styles.main}
+            ref={(el) => {
+              el && addtoAppear(el, riseArr)
+            }}
+          >
             <span className={balooBhaijaan2.className}>28 . 12 . 2023</span>
           </div>
         </div>
         <div className={styles.time}>
-          <div ref={addtoAppear}>
+          <div
+            ref={(el) => {
+              el && addtoAppear(el, riseArr)
+            }}
+          >
             <Image src={rings} alt="ring" height={100} />
           </div>
-          <div className={styles.main} ref={addtoRise}>
+          <div
+            className={styles.main}
+            ref={(el) => {
+              el && addtoAppear(el, riseArr)
+            }}
+          >
             <span className={balooBhaijaan2.className}>9.00</span>
           </div>
         </div>
         <div className={styles.time}>
-          <div ref={addtoAppear}>
+          <div
+            ref={(el) => {
+              el && addtoAppear(el, riseArr)
+            }}
+          >
             <Image src={cheers} alt="ring" height={100} />
           </div>
-          <div className={styles.main} ref={addtoRise}>
+          <div
+            className={styles.main}
+            ref={(el) => {
+              el && addtoAppear(el, riseArr)
+            }}
+          >
             <span className={balooBhaijaan2.className}>12.00</span>
           </div>
         </div>
         <div className={styles.place}>
-          <span
-            className={balooBhaijaan2.className + " " + styles.khachsan}
-            ref={addtoRise}
+          <div
+            ref={(el) => {
+              el && addtoAppear(el, appearArr)
+            }}
           >
-            Khách sạn số 6
-          </span>
-          <span
-            className={balooBhaijaan2.className + " " + styles.hoitruong}
-            ref={addtoRise}
+            <span className={balooBhaijaan2.className + " " + styles.khachsan}>
+              Khách sạn số 6
+            </span>
+          </div>
+          <div
+            ref={(el) => {
+              el && addtoAppear(el, appearArr)
+            }}
           >
-            Hội trường số 5
-          </span>
-          <span
-            className={balooBhaijaan2.className + " " + styles.diachi}
-            ref={addtoRise}
+            <span className={balooBhaijaan2.className + " " + styles.hoitruong}>
+              Hội trường số 5
+            </span>
+          </div>
+          <div
+            ref={(el) => {
+              el && addtoAppear(el, appearArr)
+            }}
           >
-            Số 7 Đường abc Thanh phố Vinh Nghệ An
-          </span>
+            <span
+              className={balooBhaijaan2.className + " " + styles.diachi}
+              style={{ textAlign: "center" }}
+            >
+              Số 7 Đường abc Thanh phố Vinh Nghệ An
+            </span>
+          </div>
         </div>
       </div>
     </div>

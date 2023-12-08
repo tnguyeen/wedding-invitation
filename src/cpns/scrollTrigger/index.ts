@@ -1,5 +1,6 @@
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { MutableRefObject } from "react"
 gsap.registerPlugin(ScrollTrigger)
 
 export const rise = (el: HTMLDivElement) => {
@@ -33,4 +34,22 @@ export const appear = (el: HTMLDivElement) => {
       },
     }
   )
+}
+
+export const addtoRise = (
+  el: HTMLDivElement,
+  arr: MutableRefObject<HTMLDivElement[]>
+) => {
+  if (el && !arr.current.includes(el)) {
+    arr.current.push(el)
+  }
+}
+
+export const addtoAppear = (
+  el: HTMLDivElement,
+  arr: MutableRefObject<HTMLDivElement[]>
+) => {
+  if (el && !arr.current.includes(el)) {
+    arr.current.push(el)
+  }
 }

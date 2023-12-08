@@ -11,10 +11,13 @@ import {
 const dancingScript = Dancing_Script({ subsets: ["latin"] })
 import { Bride, Groom } from "@/data/Person"
 import Imgs from "./picture"
-import { useEffect, useRef } from "react"
+import Slider from "./Slide"
+import { useEffect, useRef, useState } from "react"
 import { rise, appear } from "@/cpns/scrollTrigger"
 
 export default function Sec3() {
+  const [active, setActive] = useState<boolean>(false)
+  const [current, setCurrent] = useState<number>(0)
   const riseArr = useRef<Array<HTMLDivElement>>([])
   const appearArr = useRef<Array<HTMLDivElement>>([])
   useEffect(() => {
@@ -30,6 +33,9 @@ export default function Sec3() {
     if (el && !appearArr.current.includes(el)) {
       appearArr.current.push(el)
     }
+  }
+  function handleClose() {
+    setActive(false)
   }
   return (
     <div style={{ width: "100vw", padding: "30px" }}>
@@ -53,6 +59,10 @@ export default function Sec3() {
             <div
               ref={addtoAppear}
               className={styles.item + " " + styles.medium}
+              onClick={() => {
+                setActive(true)
+                setCurrent(i)
+              }}
             >
               <div
                 key={i}
@@ -63,6 +73,7 @@ export default function Sec3() {
           )
         })}
       </div>
+      {active && <Slider handleClose={handleClose} index={current} />}
     </div>
   )
 }

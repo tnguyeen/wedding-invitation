@@ -5,12 +5,19 @@ import styles from "./Main.module.scss"
 
 const dancingScript = Dancing_Script({ subsets: ["latin"] })
 const lemonada = Lemonada({ subsets: ["latin"] })
+
 import { Bride, Groom } from "@/data/Person"
-import PersonCpn from "./Person/Person"
 import codau from "./codau.jpg"
 import chure from "./chure.jpg"
+import { Cart, Story } from "./Cart"
+import ImgsCpn from "./Imgs"
 import { rise, appear, addtoAppear, addtoRise } from "@/cpns/scrollTrigger"
 import { useEffect, useRef } from "react"
+
+const a: Story = {
+  heading: "Menjalin Hubungan",
+  main: "Your blessing of coming to our wedding is enough for us. But if you want to give a gift, we provide Digital Envelopes to make it easier for you. Thank you",
+}
 
 export default function Sec1() {
   const riseArr = useRef<Array<HTMLDivElement>>([])
@@ -21,28 +28,30 @@ export default function Sec1() {
   }, [])
   return (
     <div className={styles.wrapper}>
+      <div
+        ref={(el) => {
+          el && addtoAppear(el, riseArr)
+        }}
+      >
+        <span className={lemonada.className}>The Story of</span>
+      </div>
       <h1
         className={dancingScript.className}
         ref={(el) => {
           el && addtoAppear(el, riseArr)
         }}
       >
-        Wedding
+        Our Journey
       </h1>
-      <div
-        ref={(el) => {
-          el && addtoAppear(el, riseArr)
-        }}
-      >
-        <span className={lemonada.className}>
-          With the grace and blessing of Allah SWT, the honor of your presence
-          is requested at the marriage of :
-        </span>
-      </div>
-      <div className={styles.gthieu}>
-        <PersonCpn person={Bride} img={codau} />
-        <h2 className={dancingScript.className}>&</h2>
-        <PersonCpn person={Groom} img={chure} />
+
+      <div className={styles.main}>
+        <ImgsCpn />
+        <div className={styles.stories}>
+          <Cart story={a} index={1} />
+          <Cart story={a} index={2} />
+          <Cart story={a} index={3} />
+          <Cart story={a} index={4} />
+        </div>
       </div>
     </div>
   )
